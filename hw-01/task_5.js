@@ -11,25 +11,23 @@ console.log(userCountry);
 switch (userCountry) {
   case countries[0].toLocaleLowerCase():
     i = 0;
-    message = `Доставка в ${countries[i]} , будет стоить ${price[i]} кредитов`;
     break;
   case countries[1].toLocaleLowerCase():
     i = 1;
-    message = `Доставка в ${countries[i]} , будет стоить ${price[i]} кредитов`;
     break;
   case countries[2].toLocaleLowerCase():
     i = 2;
-    message = `Доставка в ${countries[i]} , будет стоить ${price[i]} кредитов`;
     break;
   case countries[3].toLocaleLowerCase():
     i = 3;
-    message = `Доставка в ${countries[i]} , будет стоить ${price[i]} кредитов`;
     break;
   case countries[4].toLocaleLowerCase():
     i = 4;
-    message = `Доставка в ${countries[i]} , будет стоить ${price[i]} кредитов`;
     break;
   default:
     message = 'В вашей стране доставка не доступна!';
+}
+if (i <= countries.length) {
+  message = `Доставка в ${countries[i]} , будет стоить ${price[i]} кредитов`;
 }
 alert(message);
