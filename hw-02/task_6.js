@@ -18,7 +18,7 @@ while (input !== null) {
   }
 }
 // console.log(numbers);
-for (let r = 0; r < numbers.length; r++) {
-  total = total + numbers[r];
+for (let i = 0; i < numbers.length; i++) {
+  total += numbers[i];
 }
 alert(`Сума ${total}`);

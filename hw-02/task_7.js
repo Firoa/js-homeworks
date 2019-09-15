@@ -2,28 +2,14 @@
 const logins = ['Mango', 'robotGoogles', 'Poly', 'Aj4x1sBozz', 'qwerty123'];
 let usreLogin;
 
-const isLoginValid = function(login) {
-  console.log(login.length);
-  if (4 <= login.length && login.length <= 16) {
-    return true;
-  } else return false;
-};
-
-const isLoginUnique = function(allLogins, login) {
-  const arr = Array.from(allLogins);
-  if (arr.includes(login)) {
-    return false;
-  } else return true;
-};
+const isLoginValid = login => 4 <= login.length && login.length <= 16;
+const isLoginUnique = (allLogins, login) => allLogins.includes(login);
 
 // usreLogin = prompt('Введіть логін');
 const addLogin = function(allLogins, login) {
-  const isValid = isLoginValid(login);
-  console.log('isValid', isValid);
   let message;
-  if (isValid) {
-    const isFree = isLoginUnique(allLogins, login);
-    if (isFree) {
+  if (isLoginValid(login)) {
+    if (isLoginUnique(allLogins, login)) {
       message = 'Логін вдало доданий';
     } else {
       message = 'Такий логін вже використовується';

@@ -1,12 +1,9 @@
 'use strict';
-function formatString(string) {
-  if (string.length > 40) {
-    const res = Array.from(string);
-    res.splice(36, string.length - 36, '.', '.', '.');
-    string = res.join('');
-  }
-  return string;
-}
+const formatString = function(string, value = 40) {
+  return string.length > value
+    ? (string = `${string.slice(0, 40 - 4)}...`)
+    : string;
+};
 
 console.log(formatString('Curabitur ligula sapien, tincidunt non.'));
 console.log(formatString('Vestibulum facilisis, purus nec pulvinar iaculis.'));
