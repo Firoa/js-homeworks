@@ -2,7 +2,7 @@
 
 const findBestEmployee = function(employees) {
   let bestWorker;
-  let taskQuantity = 0;  
+  let taskQuantity = 0;
   for (const entry of Object.entries(employees)) {
     if (entry[1] > taskQuantity) {
       bestWorker = entry[0];

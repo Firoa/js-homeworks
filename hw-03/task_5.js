@@ -11,7 +11,7 @@ const getAllPropValues = function(arr, prop) {
   let propArr = [];
   for (const singleobject of arr) {
     propArr.push(singleobject[prop]);
-  }  
+  }
   return propArr;
 };
 
