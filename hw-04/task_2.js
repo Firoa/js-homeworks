@@ -1,7 +1,26 @@
 'use strict';
 
-const countProps = object => Object.keys(object).length;
+const inventory = {
+  items: ['Монорельса', 'Фильтр'],
+  add(itemName) {
+    this.items.push(itemName);
+  },
+  remove(itemName) {
+    this.items = this.items.filter(item => item !== itemName);
+  },
+};
 
-console.log(countProps({})); // 0
-console.log(countProps({ name: 'Mango', age: 2 })); // 2
-console.log(countProps({ mail: 'poly@mail.com', isOnline: true, score: 500 })); // 3
+const invokeInventoryAction = function(itemName, action) {
+  console.log(`Invoking ${action.name} opeartion on ${itemName}`);
+  action(itemName);
+};
+
+invokeInventoryAction('Аптечка', inventory.add.bind(inventory));
+//   // Invoking add opeartion on Аптечка
+
+console.log(inventory.items); // ['Монорельса', 'Фильтр', 'Аптечка']
+
+invokeInventoryAction('Фильтр', inventory.remove.bind(inventory));
+//   // Invoking remove opeartion on Фильтр
+
+console.log(inventory.items); // ['Монорельса', 'Аптечка']
