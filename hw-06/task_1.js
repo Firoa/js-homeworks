@@ -125,7 +125,7 @@ const resarr = arr.reduce((acc, number, numberIndex) => {
   console.log('number', number);
   console.log('numberIndex', numberIndex);
   acc.push(number);
-  return;
+  return acc;
 }, []);
 
 console.log('resarr:', resarr);
