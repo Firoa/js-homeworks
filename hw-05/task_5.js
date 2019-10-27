@@ -25,7 +25,7 @@ class Car {
     return this._price;
   }
   set price(price) {
-    return (this._price = price);
+    this._price = price;
   }
 
   /*
