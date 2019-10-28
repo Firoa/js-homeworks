@@ -1,16 +1,12 @@
 'use strict';
 import users from './users.js';
 
-const getUserNames = users => {
-  return users.map(element => element.name);
-};
-
+const getUserNames = users => users.map(element => element.name);
 console.log(getUserNames(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
-const getUsersWithEyeColor = (users, color) => {
-  return users.filter(user => user.eyeColor === color);
-};
+const getUsersWithEyeColor = (users, color) =>
+  users.filter(user => user.eyeColor === color);
 
 console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr
 
