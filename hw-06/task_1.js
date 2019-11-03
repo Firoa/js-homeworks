@@ -1,7 +1,8 @@
 'use strict';
 import users from './users.js';
 
-const getUserNames = users => users.map(element => element.name);
+const getUserNames = users => users.map(({ name }) => name);
+
 console.log(getUserNames(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
@@ -33,7 +34,7 @@ console.log(getUserWithEmail(users, 'shereeanthony@kog.com')); // {объект 
 console.log(getUserWithEmail(users, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
 
 const getUsersWithAge = (users, min, max) => {
-  return users.filter(user => user.age > min && user.age < max);
+  return users.filter(({ age }) => age > min && age < max);
 };
 
 console.log(getUsersWithAge(users, 20, 30)); // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
@@ -68,15 +69,18 @@ const getNamesSortedByFriendsCount = users => {
 console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
 
+
+
 const getSortedUniqueSkills = users => {
   return users
     .reduce((acc, user) => {
-      user.skills.forEach(e => {
-        !acc.find(skill => skill === e) && acc.push(e);
-      });
+      acc.push(
+        ...user.skills.filter(s => {
+          return !acc.includes(s);
+        }),
+      );
       return acc;
-    }, [])
-    .sort();
+    }, []).sort((a, b) => a.localeCompare(b, 'en'));
 };
 
 console.log(getSortedUniqueSkills(users));
