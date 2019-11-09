@@ -7,15 +7,14 @@ console.log(getUserNames(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
 const getUsersWithEyeColor = (users, color) =>
-  users.filter(user => user.eyeColor === color);
+  users.filter(({ eyeColor }) => eyeColor === color);
 
 console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr
 
-const getUsersWithGender = (users, gender) => {
-  return users.reduce((names, user) => {
-    user.gender === gender ? names.push(user.name) : false;
-    return names;
-  }, []);
+const getUsersWithGender = (users, genderToCompare) => {
+  return users
+    .filter(({ gender }) => gender === genderToCompare)
+    .map(({ name }) => name);
 };
 
 console.log(getUsersWithGender(users, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
@@ -51,10 +50,11 @@ console.log(calculateTotalBalance(users)); // 20916
 // Массив имен всех пользователей у которых есть друг с указанным именем.
 
 const getUsersWithFriend = (users, friendName) => {
-  return users.reduce((acc, user) => {
-    user.friends.find(friend => friend === friendName) && acc.push(user.name);
-    return acc;
-  }, []);
+  return users
+    .filter(({ friends }) => 
+        friends.includes(friendName)
+    )
+    .map(({ name }) => name);
 };
 
 console.log(getUsersWithFriend(users, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
@@ -69,8 +69,6 @@ const getNamesSortedByFriendsCount = users => {
 console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
 
-
-
 const getSortedUniqueSkills = users => {
   return users
     .reduce((acc, user) => {
@@ -80,7 +78,8 @@ const getSortedUniqueSkills = users => {
         }),
       );
       return acc;
-    }, []).sort((a, b) => a.localeCompare(b, 'en'));
+    }, [])
+    .sort((a, b) => a.localeCompare(b, 'en'));
 };
 
 console.log(getSortedUniqueSkills(users));
