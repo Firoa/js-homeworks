@@ -51,34 +51,28 @@ console.log(calculateTotalBalance(users)); // 20916
 
 const getUsersWithFriend = (users, friendName) => {
   return users
-    .filter(({ friends }) => 
-        friends.includes(friendName)
-    )
+    .filter(({ friends }) => friends.includes(friendName))
     .map(({ name }) => name);
 };
 
 console.log(getUsersWithFriend(users, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
 console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]
 
-const getNamesSortedByFriendsCount = users => {
-  return users
+const getNamesSortedByFriendsCount = ([...users]) =>
+  users
     .sort((a, b) => a.friends.length - b.friends.length)
     .map(user => user.name);
-};
-
 console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
 
-const getSortedUniqueSkills = users => {
+
+const getSortedUniqueSkills = ([...users]) => {
   return users
-    .reduce((acc, user) => {
-      acc.push(
-        ...user.skills.filter(s => {
-          return !acc.includes(s);
-        }),
-      );
-      return acc;
-    }, [])
+    .reduce(
+      (acc, {skills}) =>
+        (acc = [...acc, ...skills.filter(skill => !acc.includes(skill))]),
+      [],
+    )
     .sort((a, b) => a.localeCompare(b, 'en'));
 };
 
