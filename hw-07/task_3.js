@@ -18,18 +18,6 @@ const images = [
   },
 ];
 
-// const AddImgToGalary = images => {
-//   return images.reduce((acc, { url, alt }) => {
-//     const item = document.createElement('li');
-//     const imgbox = document.createElement('img');
-//     imgbox.src = url;
-//     imgbox.alt = alt;
-//     item.appendChild(imgbox);
-//     acc = [...acc, item];
-//     return acc;
-//   }, []);
-// };
-
 const parrentList = document.querySelector('#gallery');
 const ListArr = images
   .map(({ url, alt }) => {
