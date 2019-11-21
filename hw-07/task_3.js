@@ -23,7 +23,5 @@ const ListArr = images
   .map(({ url, alt }) => {
     return `<li class = "gallery-item"><img class ="gallery-img" src ="${url}" alt = "${alt}"></li>`;
   })
-  .reduce((acc, item) => {
-    return acc + item;
-  }, '');
+  .join('\n');
 parrentList.insertAdjacentHTML('afterbegin', ListArr);

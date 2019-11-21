@@ -58,3 +58,17 @@ button {
 #validation-input.invalid {
   border-color: #f44336;
 }
+.boxes{
+  display: flex;
+  height: 320px;
+  flex-direction: row;
+  width: 1200px;  
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin-bottom: 30px;
+}
+.box{
+  width: 30px;
+  height: 30px;
+}

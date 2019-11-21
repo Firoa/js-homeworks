@@ -1,7 +1,7 @@
 'use strict';
 const inputSection = document.querySelector('#validation-input');
 inputSection.addEventListener('blur', ({ target }) => {
-  if (target.value.length > target.dataset.length) {
+  if (target.value.length >= target.dataset.length) {
     target.classList.remove('invalid');
     target.classList.add('valid');
   } else {
