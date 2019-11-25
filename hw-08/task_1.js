@@ -67,8 +67,14 @@ class Gallery {
   }
   __FlippinThrough(){
     document.addEventListener('keydown', event => {
-      console.log(event.key);
-      if(event.key === 'ArrowRight')    {}
+      console.log(this.liteBoxImg);
+     const elem = this.gallerryItems.indexOf(this.gallerryItems.find((item)=>item.original === this.liteBoxImg.src));
+     
+     console.log(this.gallerryItems.indexOf(elem));
+     console.log(elem);
+      if(event.key === 'ArrowRight')    {
+        this.liteBoxImg.src = ''
+      }
       if (event.key === 'ArrowLeft') {}       
     });
   }
