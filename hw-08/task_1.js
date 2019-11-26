@@ -54,39 +54,37 @@ class Gallery {
   __CloseByOutClick() {
     const overlay = document.querySelector('.lightbox__content');
     overlay.addEventListener('click', event => {
+      if(event.target === this.liteBoxImg ) return;
       this.liteBox.classList.remove('is-open');
       this.liteBoxImg.src = '';
     });
   }
   __CloseByEsc() {
     document.addEventListener('keydown', event => {
-      if (event.key !== 'Escape') return;     
+      if (event.key !== 'Escape') return;
       this.liteBox.classList.remove('is-open');
       this.liteBoxImg.src = '';
     });
   }
-  __FlippinThrough(){
-    document.addEventListener('keydown', event => {
-      console.log(this.liteBoxImg);
-     const elem = this.gallerryItems.indexOf(this.gallerryItems.find((item)=>item.original === this.liteBoxImg.src));
-     
-     console.log(this.gallerryItems.indexOf(elem));
-     console.log(elem);
-      if(event.key === 'ArrowRight')    {
-        this.liteBoxImg.src = ''
+  __FlippinThrough() {
+    document.addEventListener('keydown', event => {      
+      let index = this.gallerryItems.indexOf(
+        this.gallerryItems.find(item => item.original === this.liteBoxImg.src),
+      );
+      if (event.key === 'ArrowRight') {
+        index += 1;
       }
-      if (event.key === 'ArrowLeft') {}       
+      if (event.key === 'ArrowLeft') {
+        index -= 1;
+      }
+      if (index < 0 || index >= this.gallerryItems.length) {
+        return;
+      }
+      this.liteBoxImg.src = this.gallerryItems[index].original;
     });
   }
 }
 
-const test = new Gallery(gallerryItems, galerryNode);
+new Gallery(gallerryItems, galerryNode);
 
-// const  __addGalleryItems = (gallerryItems) => {
-//     return gallerryItems.map(({preview,original,description}) => {
-//       return`<li class = "gallery-items"><img src="${preview}" alt="${description}"></li>`
-//     }).join('\n');
-//   }
 
-// __addGalleryItems(gallerryItems);
-// console.log(__addGalleryItems(gallerryItems));
